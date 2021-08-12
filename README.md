@@ -27,6 +27,10 @@ then set `ENV = True` in your environment and make env variables for everything 
 
 `python3 -m genshinbot`
  
+ 
+# Limitations
+  Currently using single cookie is supported, will implement using multiple cookies at a later stage. Read [here](https://github.com/thesadru/genshinstats#setting-multiple-cookies-at-once) why using multiple cookies is recommended.
+ 
  # Credits
   [thesadru](https://github.com/thesadrus) - creator of [genshinstats](https://github.com/thesadru/genshinstats) library.
   
