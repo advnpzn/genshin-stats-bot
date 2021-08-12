@@ -1,9 +1,17 @@
 # genshin-stats-bot (Work in Progress)
  Telegram Bot for seeing **Genshin Impact** Stats.
 
-# To fill
+# Setting up..
+`git clone https://github.com/notPlasticCat/genshin-stats-bot.git`
+
+`cd genshin-stats-bot`
+
+`pip install -r requirements.txt`
+
 Fill the required stuff in `example_config.ini` and rename(if you want) it to `config.ini` or if you're planning to use environmental variables,
-then set `ENV = True` in your environment and make env variables for everything you have seen in the `example_config.ini`
+then set `ENV = True` in your environment and make env variables for everything you have seen in the `example_config.ini`. Then to run the bot do
+
+`python3 -m genshinbot`
 
 # Starting the bot
  Either by *webhook* or *long polling*
