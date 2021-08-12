@@ -7,11 +7,11 @@ import sys
 from telegram import ParseMode
 
 ENV = bool(os.environ.get("ENV", False))
-WEB_HOOK = bool(os.environ.get("web_hook", False))
 
 if ENV:
     logger.info("Using -> Env variable.")
     BOT_TOKEN = os.environ.get("bot_token", "")
+    WEB_HOOK = bool(os.environ.get("web_hook", False))
     ltuid = os.environ.get("ltuid", 123456789)
     ltoken = os.environ.get("ltoken", )
     MONGO_HOST = os.environ.get("mongo_host", "")
@@ -29,6 +29,7 @@ else:
         config.read('genshinbot/config.ini')
         logger.info("Read Original config.")
     BOT_TOKEN = config['bot']['token']
+    WEB_HOOK = int(config['webhook']['web_hook'])
     MONGO_HOST = config['db']['mongo_host']
     ltuid = config['gi']['ltuid']
     ltoken = config['gi']['ltoken']
