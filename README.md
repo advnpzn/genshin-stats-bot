@@ -1,7 +1,7 @@
 # genshin-stats-bot (Work in Progress)
  Telegram Bot for seeing **Genshin Impact** Stats.
 
-# Setting up..
+## Setting up..
 `git clone https://github.com/notPlasticCat/genshin-stats-bot.git`
 
 `cd genshin-stats-bot`
@@ -15,7 +15,7 @@ then set `ENV = True` in your environment and make env variables for everything 
    Follow this [link](https://github.com/thesadru/genshinstats#how-can-i-get-my-cookies).
 
 
-# Webhook (or) Long polling
+## Webhook (or) Long polling
  
  If you want to use webhook, make an environmental variable `web_hook = True` (assuming you are using environmental variables i.e `ENV = True` instead of `config.ini`)
  else, just set `web_hook=1` in `config.ini` file.
@@ -28,7 +28,7 @@ then set `ENV = True` in your environment and make env variables for everything 
 `python3 -m genshinbot`
  
  
-# Limitations
+## Limitations
   Currently using single cookie is supported, will implement using multiple cookies at a later stage. Read [here](https://github.com/thesadru/genshinstats#setting-multiple-cookies-at-once) why using multiple cookies is recommended.
  
  # Credits
