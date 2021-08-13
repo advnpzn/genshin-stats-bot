@@ -16,3 +16,38 @@ ME_KEYBOARD = InlineKeyboardMarkup(
         ],
     ]
 )
+
+
+CHAR_SUMM_GALLERY_START = InlineKeyboardMarkup(
+    [
+        [
+            InlineKeyboardButton("➡️", callback_data="char_forward"),
+        ],
+        [
+            InlineKeyboardButton("Back", callback_data="back_to_me")
+        ],
+    ]
+)
+
+CHAR_SUMM_GALLERY_END = InlineKeyboardMarkup(
+    [
+        [
+            InlineKeyboardButton("⬅️", callback_data="char_backward"),
+        ],
+        [
+            InlineKeyboardButton("Back", callback_data="back_to_me")
+        ],
+    ]
+)
+
+CHAR_SUMM_GALLERY = InlineKeyboardMarkup(
+    [
+        [
+            InlineKeyboardButton("⬅️", callback_data="char_backward"),
+            InlineKeyboardButton("➡️", callback_data="char_forward"),
+        ],
+        [
+            InlineKeyboardButton("Back", callback_data="back_to_me")
+        ],
+    ]
+)

@@ -1,5 +1,4 @@
-from os import stat
-import typing
+
 from telegram import Update
 from telegram.ext import CallbackContext, CommandHandler, CallbackQueryHandler
 from genshinbot import dp, ltuid, ltoken, updater
@@ -7,10 +6,9 @@ import genshinstats as gs
 from genshinstats import DataNotPublic
 from genshinbot.constants.strings import LOGIN_HOYOLAB, INVALID_UID
 from genshinbot.wrappers import send_typing_action
-from pprint import pprint
 from genshinbot.keyboards import HOYO_LINK
 from genshinbot.database import addUser, update_uid, get_uid
-from genshinbot.funcs import user_summary, me_characters
+from genshinbot.funcs import user_summary, me_callback, characters_forward, characters_backward, back_to
 
 
 gs.set_cookie(ltuid=ltuid, ltoken=ltoken)
@@ -83,7 +81,7 @@ def search(update: Update, context: CallbackContext) -> None:
             text=f"`{e}`"
         )
     
-
+@send_typing_action
 def start(update: Update, context: CallbackContext) -> None:
     update.message.reply_text("Hello traveler\! Check your genshin stats\.\nDo /login ")
     user_id = update.effective_user.id
@@ -92,6 +90,8 @@ def start(update: Update, context: CallbackContext) -> None:
     last_name = update.effective_user.last_name
     addUser(user_id, first_name, last_name, user_name)
 
+
+@send_typing_action
 def me(update: Update, context: CallbackContext) -> None:
     user_id = update.effective_user.id
     if type(get_uid(user_id)) != int:
@@ -99,6 +99,7 @@ def me(update: Update, context: CallbackContext) -> None:
         return
     else:
         stats = gs.get_user_stats(uid = get_uid(user_id))
+        context.user_data[f"{user_id}_stats"] = stats["stats"]
         user_summary(update, context, stats["stats"])
 
 
@@ -110,7 +111,10 @@ dp.add_handler(CommandHandler("search", search, run_async=True))
 dp.add_handler(CommandHandler("me", me, run_async=True))
 dp.add_handler(CommandHandler("start", start, run_async=True))
 #-----------------------------------------------------------------------
-dp.add_handler(CallbackQueryHandler(me_characters, pattern=r"me_", run_async=True))
+dp.add_handler(CallbackQueryHandler(me_callback, pattern=r"me_", run_async=True))
+dp.add_handler(CallbackQueryHandler(characters_forward, pattern=r"char_forward", run_async=True))
+dp.add_handler(CallbackQueryHandler(characters_backward, pattern=r"char_backward", run_async=True))
+dp.add_handler(CallbackQueryHandler(back_to, pattern=r"back_to_", run_async=True))
 
 
 

@@ -32,3 +32,24 @@ __*Stats \- Summary*__
 *Unlocked Waypoints :* `{}`
 """
 )
+
+
+CHAR_SUMMARY = (
+"""
+*Element :* `{}`{}
+*Name :* `{}`
+*Level :* `{}`
+*Fiendhsip :* `{}`
+*Star :* `{}`
+"""
+)
+
+vision_dict = {
+        "Pyro": "🔥",
+        "Cryo": "❄️",
+        "Dendro": "🌿",
+        "Electro": "⚡",
+        "Geo":  "💎",
+        "Hydro": "💧",
+        "Anemo": "🌬️"
+    }
