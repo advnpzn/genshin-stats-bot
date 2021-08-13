@@ -36,3 +36,18 @@ then set `ENV = True` in your environment and make env variables for everything 
   
   Authors of [python-telegram-bot](https://github.com/python-telegram-bot/python-telegram-bot) wrapper.
   
+
+# Commands
+ Currently only the following are implemented.
+ `/start` - Starts the bot
+ 
+ `/login` - Save your in-game UID in the database, so that you don't have to type your uid again and again, also is used for `/me`
+ 
+ `/me` - Gives you the Overall summary of your Genshin Impact account. You can also check out the summary of `Characters`, `Explorations` and `Teapot`in this Section. Details of            their respective fields will be implemented in the near future and will be included in this section.
+ 
+ `/logout` - Will logout your in-game UID. i.e Will delete your UID from the database. This will render commands such as `/me` unusable unless you login again.
+ 
+ `/search` - Search the summary of the given in-game UID.
+
+ **Usage**: `/search {in-game-uid}`
+ e.g. `/search 654756438`
