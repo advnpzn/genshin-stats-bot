@@ -44,6 +44,28 @@ CHAR_SUMMARY = (
 """
 )
 
+
+TEAPOT_SUMMARY = (
+"""
+*Name :* `{}`
+*Level :* `{}`
+*Placed Items :* `{}`
+*Comfort :* `{}`
+*Visitors :* `{}`
+"""
+)
+
+
+EXPLORATION_SUMMARY = (
+"""
+*Name :* `{}`
+*Level :* `{}`
+*Explored :* `{}`
+*Type :* `{}`
+"""
+)
+
+
 vision_dict = {
         "Pyro": "🔥",
         "Cryo": "❄️",

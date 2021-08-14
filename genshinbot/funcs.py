@@ -1,9 +1,17 @@
+from telegram.inline.inlinekeyboardmarkup import InlineKeyboardMarkup
 from genshinbot.database import get_uid
 from pprint import pprint
 from telegram import Update, InputMediaPhoto, user
 from telegram.ext import CallbackContext, callbackcontext
-from genshinbot.constants.strings import ME_STATS_SUMMARY, CHAR_SUMMARY, vision_dict
-from genshinbot.keyboards import CHAR_SUMM_GALLERY, CHAR_SUMM_GALLERY_END, CHAR_SUMM_GALLERY_START, ME_KEYBOARD
+from genshinbot.constants.strings import ME_STATS_SUMMARY, CHAR_SUMMARY, vision_dict, TEAPOT_SUMMARY, EXPLORATION_SUMMARY
+from genshinbot.keyboards import (BACK_TO_ME, 
+                                    CHAR_SUMM_GALLERY, 
+                                    CHAR_SUMM_GALLERY_END, 
+                                    CHAR_SUMM_GALLERY_START, 
+                                    ME_KEYBOARD, 
+                                    EXPLORATION_KEYBOARD_START, 
+                                    EXPLORATION_KEYBOARD_END, 
+                                    EXPLORATION_KEYBOARD)
 import genshinstats as gs
 from genshinbot import ltuid, ltoken
 
@@ -44,8 +52,9 @@ def me_callback(update: Update, context: CallbackContext):
     query = update.callback_query
     data = query.data.split('_')[-1]
     user_id = query.from_user.id
+    stats = gs.get_user_stats(get_uid(user_id))
     if data == "characters":
-        char_stats = gs.get_user_stats(get_uid(user_id))["characters"]
+        char_stats = stats["characters"]
         context.user_data[f"{user_id}_char_stats"] = char_stats
         context.user_data[f"{user_id}_char_len"] = len(char_stats)
         char_no = 0
@@ -66,9 +75,38 @@ def me_callback(update: Update, context: CallbackContext):
             reply_markup=CHAR_SUMM_GALLERY_START
         )
     elif data == "explorations":
-        print("expo")
+        explorations_stats = stats["explorations"]
+        context.user_data[f"{user_id}_exploration_stats"] = explorations_stats
+        exploration_len = len(explorations_stats)
+        context.user_data[f"{user_id}_exploration_len"] = exploration_len
+        exploration_no = 0
+        context.user_data[f"{user_id}_exploration_no"] = exploration_no
+        current_exploration = explorations_stats[exploration_no]
+        query.edit_message_media(
+            media=InputMediaPhoto(
+                media=current_exploration["icon"],
+                caption=EXPLORATION_SUMMARY.format(
+                    current_exploration["name"],
+                    current_exploration["level"],
+                    current_exploration["explored"],
+                    current_exploration["type"]
+                )
+            ),
+            reply_markup=EXPLORATION_KEYBOARD_START
+        )
     elif data == "teapot":
-        print("teapot")
+        teapot_stats = stats["teapots"][0]
+        query.edit_message_caption(
+            caption=TEAPOT_SUMMARY.format(
+                teapot_stats["name"],
+                teapot_stats["level"],
+                teapot_stats["placed_items"],
+                teapot_stats["comfort"],
+                teapot_stats["visitors"]
+            ),
+            reply_markup=InlineKeyboardMarkup([[BACK_TO_ME]])
+        )
+        
     
 
 

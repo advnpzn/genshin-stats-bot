@@ -1,4 +1,4 @@
-
+from pprint import pprint
 from telegram import Update
 from telegram.ext import CallbackContext, CommandHandler, CallbackQueryHandler
 from genshinbot import dp, ltuid, ltoken, updater
@@ -99,6 +99,7 @@ def me(update: Update, context: CallbackContext) -> None:
         return
     else:
         stats = gs.get_user_stats(uid = get_uid(user_id))
+        #pprint(stats)
         context.user_data[f"{user_id}_stats"] = stats["stats"]
         user_summary(update, context, stats["stats"])
 
