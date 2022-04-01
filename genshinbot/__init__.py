@@ -44,7 +44,7 @@ if sys.version_info[0] < 3 or sys.version_info[1] < 7:
 
 
 BOT_VERSION = "v0.0.1"
-REPO = "https://github.com/notPlasticCat/"
+REPO = "https://github.com/adenosinetp10/"
 
 
 updater = Updater(
